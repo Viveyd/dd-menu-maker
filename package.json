@@ -1,5 +1,5 @@
 {
-  "name": "@vivig0esnpm/dd-menu-maker",
+  "name": "@vivig0espm/dd-menu-maker",
   "version": "1.0.0",
   "description": "util function to create simple drop down menus",
   "main": "ddMenuMaker.js",
@@ -12,9 +12,12 @@
     "url": "git+https://github.com/Viveyd/dd-menu-maker.git"
   },
   "keywords": [
-    "drop-down-menu"
+    "drop-down-menu",
+    "drop down",
+    "drop",
+    "down"
   ],
-  "author": "vivig0esnpm",
+  "author": "vivig0espm",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Viveyd/dd-menu-maker/issues"
