@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "util function to create simple drop down menus",
   "main": "ddMenuMaker.js",
-  "private": "false",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
