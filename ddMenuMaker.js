@@ -1,25 +1,24 @@
 // Module takes trigger element(button, a, etc..) and list element(ul, ol)
-// and returns a drop down menu div toggleable by trigger element event (click, hover)
-// import './ddMaker.css';
+// and returns a drop down menu div toggleable by trigger element event (click, hover, hoverclick)
 
 export default function createDdMenu(
   // id = 'dd-menu',
-  id,
+  id = '',
   triggerElement, 
   triggerEvent = 'click', 
   listElement,
-  itemsToLinks = false) {
+  itemsToLinks = false,
+  linkHrefs = [],
+  ulTextAlign = 'left') {
   
   // If no ID is given or the typeof ID === 'number'
   // return error
   if(id == '' || isNaN(id.slice(0, 1)) === false){
-    return (()=> console.error('Invalid ID argument!'))()
+    return (()=> console.error('Invalid ID argument!'))();
   } 
   
   // Get the node where the drop-down menu will later be appended to 
   let ddMenuLocation = listElement.parentNode;
-
- 
 
   // Create new div container for list element
   let ddMenu = document.createElement('div');
@@ -29,40 +28,44 @@ export default function createDdMenu(
   ddMenu.style.display= 'none';
   ddMenu.style.backgroundColor = 'white';
   ddMenu.style.width = 'min-content';
-  ddMenu.style.top = `${triggerElement.offsetTop + triggerElement.offsetHeight}px`;
+  ddMenu.style.top = `${triggerElement.offsetTop}px`;
+  ddMenu.style.marginTop = triggerElement.offsetHeight + 'px';
   ddMenu.style.left = `${triggerElement.offsetLeft}px`;
   
   // Edit list element items
    listElement.id = `${id}-menu-list`;
+
   // Give list items a class name
   [... listElement.querySelectorAll('li')].forEach((item) => {
     item.classList.add(`${id}-menu-items`);
     item.style.marginBottom = '10px';
   });
+
   // If itemsToLinks === true
   if(itemsToLinks === true){
-    [... listElement.querySelectorAll('li')].forEach((item) => {
-      let link = document.createElement('a');
-      link.classList.add('custom-links-1')
+    let items = listElement.querySelectorAll('li');
+    for(let i = 0, item, href, link; i < items.length; i++){
+      item = items[i];
+      href = linkHrefs[i]
+      link = document.createElement('a');
       link.textContent = item.textContent;
-      link.href= '';
+      link.href = (href != null) ? href: '';
       link.style.color = 'black';
       link.style.textDecoration = 'none';
       item.textContent = '';
       item.appendChild(link);
-    });
+    }
   }
   listElement.style.listStyleType= 'none';
-  listElement.style.padding= '0px 20px 0px 0px';
-
+  listElement.style.padding= '0px';
+  listElement.style.width = triggerElement.style.width;
+  listElement.style.textAlign = ulTextAlign;
   ddMenu.appendChild(listElement);
 
   const toggleState = function toggleState(){
     ddMenu.style.display = (ddMenu.style.display == 'none') ? 'block': 'none';
   }
-  
-  // Attach an event listener to the trigger element for toggling display states
-
+  // Attach an event listener to the trigger element for toggling display state.
   //'hover' or 'hoverclick' triggerEvent
   if(triggerEvent === 'hover' || triggerEvent === 'hoverclick'){
     // Create new container to contain triggerElement and listElement
