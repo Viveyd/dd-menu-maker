@@ -2,7 +2,7 @@
 Basic utility function that creates a simple drop down menu.
 
 ### Importing:
-import createDdMenu from './node_modules/dd-menu-maker/.ddMenuMaker.js'
+import createDdMenu from './node_modules/@vivig0espm/dd-menu-maker/.ddMenuMaker.js'
 
 ### Syntax:
 createDdMenu(id, triggerElement, triggerEvent, listElement, itemToLinks, linksHref, ulTextAlign)
